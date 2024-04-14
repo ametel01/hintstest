@@ -4,12 +4,24 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Request {
     #[prost(uint64, tag = "1")]
-    pub n: u64,
+    pub limb0: u64,
+    #[prost(uint64, tag = "2")]
+    pub limb1: u64,
+    #[prost(uint64, tag = "3")]
+    pub limb2: u64,
+    #[prost(uint64, tag = "4")]
+    pub limb3: u64,
 }
 #[derive(serde::Deserialize, serde::Serialize)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Response {
     #[prost(uint64, tag = "1")]
-    pub n: u64,
+    pub limb0: u64,
+    #[prost(uint64, tag = "2")]
+    pub limb1: u64,
+    #[prost(uint64, tag = "3")]
+    pub limb2: u64,
+    #[prost(uint64, tag = "4")]
+    pub limb3: u64,
 }

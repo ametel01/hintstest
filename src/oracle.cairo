@@ -1,11 +1,17 @@
 use starknet::testing::cheatcode;
-#[derive(Drop, Serde)]
+#[derive(Copy, Debug, Drop, Serde)]
 struct Request {
-    n: u64,
+    limb0: u64,
+    limb1: u64,
+    limb2: u64,
+    limb3: u64,
 }
-#[derive(Drop, Serde)]
+#[derive(Copy, Debug, Drop, Serde)]
 struct Response {
-    n: u64,
+    limb0: u64,
+    limb1: u64,
+    limb2: u64,
+    limb3: u64,
 }
 #[generate_trait]
 impl SqrtOracle of SqrtOracleTrait {
