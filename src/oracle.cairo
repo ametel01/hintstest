@@ -1,12 +1,27 @@
 use starknet::testing::cheatcode;
-#[derive(Copy, Debug, Drop, Serde)]
+#[derive(Drop, Serde)]
 struct Request {
-    limb0: u64,
-    limb1: u64,
-    limb2: u64,
-    limb3: u64,
+    base: Option<super::oracle::request::Base>,
+    exp: Option<super::oracle::request::Exp>,
 }
-#[derive(Copy, Debug, Drop, Serde)]
+/// Nested message and enum types in `Request`.
+mod request {
+    #[derive(Drop, Serde)]
+    struct Base {
+        limb0: u64,
+        limb1: u64,
+        limb2: u64,
+        limb3: u64,
+    }
+    #[derive(Drop, Serde)]
+    struct Exp {
+        limb0: u64,
+        limb1: u64,
+        limb2: u64,
+        limb3: u64,
+    }
+}
+#[derive(Drop, Serde)]
 struct Response {
     limb0: u64,
     limb1: u64,
@@ -14,11 +29,11 @@ struct Response {
     limb3: u64,
 }
 #[generate_trait]
-impl SqrtOracle of SqrtOracleTrait {
-    fn sqrt(arg: super::oracle::Request) -> super::oracle::Response {
+impl ModExpOracle of ModExpOracleTrait {
+    fn mod_exp(arg: super::oracle::Request) -> super::oracle::Response {
         let mut serialized = ArrayTrait::new();
         arg.serialize(ref serialized);
-        let mut result = cheatcode::<'sqrt'>(serialized.span());
+        let mut result = cheatcode::<'mod_exp'>(serialized.span());
         Serde::deserialize(ref result).unwrap()
     }
 }

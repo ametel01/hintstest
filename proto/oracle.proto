@@ -3,10 +3,20 @@ syntax = "proto3";
 package oracle;
 
 message Request {
+    message Base {
     uint64 limb0 = 1;
     uint64 limb1 = 2;
     uint64 limb2 = 3;
     uint64 limb3 = 4;
+    }
+    message Exp {
+    uint64 limb0 = 1;
+    uint64 limb1 = 2;
+    uint64 limb2 = 3;
+    uint64 limb3 = 4;
+    }
+    Base base = 1;
+    Exp exp = 2;
 }
 
 message Response {
@@ -16,6 +26,6 @@ message Response {
     uint64 limb3 = 4;
 }
 
-service SqrtOracle {
-    rpc Sqrt(Request) returns (Response);
+service ModExpOracle {
+    rpc ModExp(Request) returns (Response);
 }
