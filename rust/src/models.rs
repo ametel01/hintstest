@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 #[derive(serde::Deserialize, serde::Serialize)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -7,7 +9,7 @@ pub struct Request {
     #[prost(message, optional, tag = "2")]
     pub exp: ::core::option::Option<request::Exp>,
 }
-/// Nested message and enum types in `Request`.
+
 pub mod request {
     #[derive(serde::Deserialize, serde::Serialize)]
     #[allow(clippy::derive_partial_eq_without_eq)]
@@ -36,6 +38,7 @@ pub mod request {
         pub limb3: u64,
     }
 }
+
 #[derive(serde::Deserialize, serde::Serialize)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -48,4 +51,9 @@ pub struct Response {
     pub limb2: u64,
     #[prost(uint64, tag = "4")]
     pub limb3: u64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct JsonResult {
+    pub result: Response,
 }
