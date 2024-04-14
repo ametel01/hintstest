@@ -1,4 +1,7 @@
 mod oracle;
+mod tests {
+    mod call_test;
+}
 
 use oracle::{Request, SqrtOracle};
 
